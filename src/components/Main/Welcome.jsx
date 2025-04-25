@@ -95,7 +95,7 @@
 
           {menuOpen && (
             <div className="fixed inset-0 top-16 bg-black bg-opacity-90 z-40 sm:hidden">
-              <ul className="flex flex-col bg-gray-100 font-semibold text-black items-center gap-0.5 py-3 m-2 shadow-md rounded-md text-md">
+              <ul className="flex flex-col bg-gray-100 font-semibold text-black items-center gap-0.5 py-3 m-1.5 shadow-md rounded-md text-sm">
                 {navLinks.map((section) => (
                   <li key={section} className="cursor-pointe">
                     <button onClick={() => handleScrollToSection(section)} className="py-2 px-4">

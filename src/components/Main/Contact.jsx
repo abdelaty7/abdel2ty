@@ -1,10 +1,7 @@
 import React, { useState, useRef, useEffect, useCallback } from 'react';
 import { TextField } from '@mui/material';
 import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import axios from 'axios';
-
-gsap.registerPlugin(ScrollTrigger);
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -22,50 +19,33 @@ const Contact = () => {
   const successRef = useRef(null);
 
   useEffect(() => {
+    const hasAnimated = sessionStorage.getItem('contactAnimated');
+    if (hasAnimated) return;
+
+    sessionStorage.setItem('contactAnimated', 'true');
+
     const mobileQuery = window.matchMedia('(max-width: 640px)');
-    const setupAnimations = () => {
-      const ctx = gsap.context(() => {
-        const yOffset = mobileQuery.matches ? 30 : 40;
-        const duration = mobileQuery.matches ? 0.8 : 1;
+    const yOffset = mobileQuery.matches ? 30 : 40;
+    const duration = mobileQuery.matches ? 0.8 : 1;
 
-        gsap.from(titleRef.current, {
-          opacity: 0,
-          y: yOffset,
-          duration: duration,
-          ease: "power3.out",
-          scrollTrigger: {
-            trigger: titleRef.current,
-            start: "top 90%",
-          },
-        });
-
-        gsap.from(formRef.current, {
-          opacity: 0,
-          y: yOffset + 10,
-          duration: duration + 0.2,
-          delay: 0.2,
-          ease: "power3.out",
-          scrollTrigger: {
-            trigger: formRef.current,
-            start: "top 90%",
-          },
-        });
+    const ctx = gsap.context(() => {
+      gsap.from(titleRef.current, {
+        opacity: 0,
+        y: yOffset,
+        duration,
+        ease: "power3.out"
       });
 
-      return ctx;
-    };
+      gsap.from(formRef.current, {
+        opacity: 0,
+        y: yOffset + 10,
+        duration: duration + 0.2,
+        delay: 0.2,
+        ease: "power3.out"
+      });
+    });
 
-    const ctx = setupAnimations();
-    const handleResize = () => {
-      ctx.revert();
-      setupAnimations();
-    };
-
-    window.addEventListener('resize', handleResize);
-    return () => {
-      ctx.revert();
-      window.removeEventListener('resize', handleResize);
-    };
+    return () => ctx.revert();
   }, []);
 
   const handleChange = useCallback((e) => {
@@ -115,7 +95,7 @@ const Contact = () => {
     <div className="relative bg-gray-50 px-7 sm:px-6 md:px-12 lg:px-15 flex flex-col pt-5 pb-12 sm:pt-10 sm:pb-16 md:pt-16 md:pb-20" id='contact'>
       <h3
         ref={titleRef}
-        className='text-lg sm:text-xl md:text-lg font-bold border-blue-900 border-b-2 pb-1 mb-6 sm:mb-7 w-fit mx-auto text-center z-10 relative'
+        className='text-lg sm:text-xl md:text-lg font-bold border-blue-900 border-b-2 pb-1 mb-4 sm:mb-7 w-fit mx-auto text-center z-10 relative'
       >
         Contact
       </h3>

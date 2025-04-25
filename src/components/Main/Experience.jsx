@@ -52,7 +52,7 @@ const Experience = () => {
       {/* Heading */}
       <h3
         ref={titleRef}
-        className="text-lg sm:text-xl md:text-lg font-bold border-blue-900 border-b-2 pb-1 mb-6 sm:mb-7 w-fit mx-auto text-center z-10 relative"
+        className="text-lg sm:text-xl md:text-lg font-bold border-blue-900 border-b-2 pb-1 mb-4 sm:mb-7 w-fit mx-auto text-center z-10 relative"
       >
         Experience
       </h3>

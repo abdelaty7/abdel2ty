@@ -14,7 +14,7 @@ const SkillBar = ({ skill, percentage }) => {
 
   return (
     <div className="mb-2 sm:mb-3 md:mb-4 flex items-center justify-between">
-      <div className="font-semibold text-xs sm:text-sm md:text-xs w-20 sm:w-24 md:w-17">{skill}</div>
+      <div className="font-semibold text-xs sm:text-sm md:text-xs w-17 sm:w-24 md:w-17">{skill}</div>
       <div className="flex-1 bg-gray-400/60 h-1 sm:h-1.5 md:h-1.5 relative overflow-hidden mx-2 sm:mx-3">
         <div
           className="h-full bg-blue-900 transition-all duration-1000 ease-in-out"

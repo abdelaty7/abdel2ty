@@ -4,9 +4,6 @@ import PortfolioCategory from './PortfolioCategory';
 import PortfolioCards from './PortfolioCards';
 import { projects } from '../../data';
 import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-
-gsap.registerPlugin(ScrollTrigger);
 
 const Portfolio = () => {
   const [filteredCategory, setFilteredCategory] = useState("All");
@@ -30,72 +27,41 @@ const Portfolio = () => {
   }, [filteredCategory]);
 
   useEffect(() => {
-    // Create a media query for mobile devices
+    const hasAnimated = sessionStorage.getItem('portfolioAnimated');
+    if (hasAnimated) return;
+
+    sessionStorage.setItem('portfolioAnimated', 'true');
+
     const mobileQuery = window.matchMedia('(max-width: 640px)');
-    
-    const setupAnimations = () => {
-      const ctx = gsap.context(() => {
-        // Adjust animation values for different screen sizes
-        const yOffset = mobileQuery.matches ? 30 : 50;
-        const duration = mobileQuery.matches ? 0.8 : 1;
-        
-        gsap.from(titleRef.current, {
-          opacity: 0,
-          y: yOffset,
-          duration: duration,
-          ease: "power3.out",
-          scrollTrigger: {
-            trigger: titleRef.current,
-            start: "top 90%",
-            toggleActions: "play none none reverse",
-          },
-        });
+    const yOffset = mobileQuery.matches ? 30 : 50;
+    const duration = mobileQuery.matches ? 0.8 : 1;
 
-        gsap.from(categoryRef.current, {
-          opacity: 0,
-          y: yOffset,
-          duration: duration,
-          delay: 0.2,
-          ease: "power3.out",
-          scrollTrigger: {
-            trigger: categoryRef.current,
-            start: "top 90%",
-            toggleActions: "play none none reverse",
-          },
-        });
-
-        gsap.from(cardsRef.current, {
-          opacity: 0,
-          y: yOffset,
-          duration: duration,
-          delay: 0.4,
-          ease: "power3.out",
-          scrollTrigger: {
-            trigger: cardsRef.current,
-            start: "top 90%",
-            toggleActions: "play none none reverse",
-          },
-        });
+    const ctx = gsap.context(() => {
+      gsap.from(titleRef.current, {
+        opacity: 0,
+        y: yOffset,
+        duration,
+        ease: "power3.out",
       });
-      
-      return ctx;
-    };
-    
-    // Initial setup
-    const ctx = setupAnimations();
-    
-    // Update animations if screen size changes
-    const handleResize = () => {
-      ctx.revert();
-      setupAnimations();
-    };
-    
-    window.addEventListener('resize', handleResize);
-    
-    return () => {
-      ctx.revert();
-      window.removeEventListener('resize', handleResize);
-    };
+
+      gsap.from(categoryRef.current, {
+        opacity: 0,
+        y: yOffset,
+        duration,
+        delay: 0.2,
+        ease: "power3.out",
+      });
+
+      gsap.from(cardsRef.current, {
+        opacity: 0,
+        y: yOffset,
+        duration,
+        delay: 0.4,
+        ease: "power3.out",
+      });
+    });
+
+    return () => ctx.revert();
   }, []);
 
   return (

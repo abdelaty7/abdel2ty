@@ -46,7 +46,7 @@
                   transition-all duration-300 
                   sm:group-hover:shadow-lg">
                   {item.title && (
-                    <h3 className="text-xs sm:text-sm md:text-sm font-semibold mb-1">{item.title}</h3>
+                    <h3 className="text-[13px] sm:text-sm md:text-sm font-semibold mb-1">{item.title}</h3>
                   )}
                   {item.description && (
                     <p className="text-xs sm:text-xs text-gray-600 mb-2 line-clamp-2 sm:line-clamp-3">
@@ -59,7 +59,7 @@
                       {item.technologies.map((tech, i) => (
                         <span
                           key={i}
-                          className="bg-gray-200 px-2 py-[2px] rounded text-[9px] sm:text-[10.5px]"
+                          className="bg-gray-200 px-2 py-[2px] rounded-sm text-[10px] sm:text-[10.5px]"
                         >
                           {tech}
                         </span>

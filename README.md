@@ -32,8 +32,15 @@ npm start
 #### ![Empty-Inbox](public/sc-empty-inbox.png)
 #### ![Inbox](public/sc-inbox.png)
 ---
-### Live Demo
+### 📌 Live Demo
 #### [MyPortfolio](https://muhammad-essam.vercel.app/)
+---
+### 📌 Lighthouse Test
+#### ![lighthouse](public/lighthouse.png)
+#### I aspire to learn more about the world of SEO, performance, and accessibility, and to develop and enhance these areas.
+---
+### 📌 Back-end Repo
+#### [Backend repo with server & DB link](https://github.com/lil-de7k/portfolio-server)
 ---
 ### 📌 Contact
 - Email: muhvmmvdessvm@example.com

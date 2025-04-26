@@ -3,7 +3,7 @@ import { FaTrashAlt } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import empty from '/empty.png';
-import Navbar from '../components/Main/Navbar';
+import Navbar from '../components/Main/Navbar'
 
 const AdminPage = () => {
   const [messages, setMessages] = useState([]);

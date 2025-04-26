@@ -1,58 +1,108 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
+import { TextField } from '@mui/material';
 
 const LoginPage = () => {
+  const navigate = useNavigate();
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
-  const navigate = useNavigate();
+  const [isLoading, setIsLoading] = useState(false);
 
-  const handleSubmit = async (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
+    setIsLoading(true);
     setError('');
 
     try {
-      const response = await axios.post('https://muhammads-server.vercel.app/api/admin/login', { password });
-      localStorage.setItem('token', response.data.token);
+      const response = await fetch('https://muhammads-server.vercel.app/api/auth/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ email, password })
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        setError(data.message || 'Login failed');
+        return;
+      }
+
+      localStorage.setItem('token', data.token);
       navigate('/admin/inbox');
-    } catch (err) {
-      console.error(err);
-      setError('Incorrect Password');
+    // eslint-disable-next-line no-unused-vars
+    } catch (error) {
+      setError('Something went wrong. Please try again.');
+    } finally {
+      setIsLoading(false);
     }
   };
 
   return (
-    <div className="bg-gray-100 min-h-screen flex flex-col justify-center items-center px-4">
-      <div className="w-full max-w-xs sm:max-w-sm md:max-w-md">
-        <h2 className="text-2xl sm:text-3xl font-bold text-center text-gray-800 mb-6">
-          Admin Login
-        </h2>
-        <form onSubmit={handleSubmit} className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
-          <div className="mb-4">
-            <label className="block text-gray-700 text-sm sm:text-base font-bold mb-2" htmlFor="password">
-              Password
-            </label>
-            <input
-              id="password"
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              placeholder="Enter Admin Password"
-              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline text-xs sm:text-sm"
-              required
-            />
-          </div>
+    <div className="min-h-screen flex items-center justify-center bg-gray-50 px-4">
+      <div className="bg-white p-6 sm:p-7 rounded shadow-md sm:shadow-lg md:shadow-xl w-full max-w-sm mx-auto">
+        <div className='flex justify-center mb-2 sm:mb-2.5'>
+          <h2 className="text-sm sm:text-base md:text-[17.5px] font-bold text-black border-b-2 pb-1 border-blue-800 w-fit">Admin Login</h2>
+        </div>
 
-          {error && <p className="text-red-500 text-xs sm:text-sm mb-4">{error}</p>}
+        <p className="mb-4 sm:mb-6 text-center text-xs sm:text-[12.5px] text-gray-600">
+          Admin login to manage contact form messages.
+        </p>
 
-          <div className="flex items-center justify-between">
-            <button
-              type="submit"
-              className="bg-blue-700 hover:bg-blue-800 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline text-xs sm:text-sm w-full"
-            >
-              Login
-            </button>
+        {error && (
+          <div className="mb-4 sm:mb-6 p-2 bg-red-50 border border-red-100 rounded">
+            <p className="text-red-500 text-xs sm:text-xs font-medium text-center">{error}</p>
           </div>
+        )}
+
+        <form onSubmit={handleLogin} className="flex flex-col gap-3">
+          <TextField
+            fullWidth
+            variant="filled"
+            label="Email"
+            type="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+            InputProps={{
+              style: {
+                fontSize: '13px',
+                fontWeight: '500',
+                opacity: '0.8',
+                fontFamily: '"Lexend Deca", sans-serif'
+              }
+            }}
+            InputLabelProps={{ style: { fontSize: '12px' } }}
+          />
+
+          <TextField
+            fullWidth
+            variant="filled"
+            label="Password"
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+            InputProps={{
+              style: {
+                fontSize: '13px',
+                fontWeight: '500',
+                opacity: '0.8',
+                fontFamily: '"Lexend Deca", sans-serif'
+              }
+            }}
+            InputLabelProps={{ style: { fontSize: '12px' } }}
+          />
+
+          <button
+            type="submit"
+            disabled={isLoading}
+            className="w-full py-2 sm:py-2.5 text-xs sm:text-[12.5px] mt-2 cursor-pointer bg-black text-white rounded transition-all duration-200 ease-in-out hover:bg-slate-900 focus:ring-2 focus:ring-offset-2 focus:ring-black disabled:opacity-70 disabled:cursor-not-allowed"
+          >
+            {isLoading ? 'Logging in...' : 'Login'}
+          </button>
         </form>
       </div>
     </div>

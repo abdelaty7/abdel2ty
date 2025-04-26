@@ -68,7 +68,7 @@ const Contact = () => {
     setFailureMessage('');
 
     try {
-      const response = await axios.post('http://localhost:5000/api/messages', formData);
+      const response = await axios.post('http://localhost:3000/api/messages', formData);
 
       setSuccessMessage('Message has been sent successfully!');
       setFormData({ name: '', email: '', message: '' });

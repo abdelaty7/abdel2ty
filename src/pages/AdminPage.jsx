@@ -20,7 +20,7 @@ const AdminPage = () => {
     const fetchMessages = async () => {
       try {
         setLoading(true);
-        const response = await axios.get('http://localhost:5000/api/messages', {
+        const response = await axios.get('http://localhost:3000/api/messages', {
           headers: {
             Authorization: `Bearer ${token}`,
           }
@@ -39,7 +39,7 @@ const AdminPage = () => {
 
   const deleteMessage = async (id) => {
     try {
-      await axios.delete(`http://localhost:5000/api/messages/${id}`, {
+      await axios.delete(`http://localhost:3000/api/messages/${id}`, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem('token')}`,
         }

@@ -18,22 +18,22 @@
 ---
 ### 📌 How To Run Localy
 ```
-git clone https://github.com/yourusername/yourrepo.git
-cd yourrepo
+git clone https://github.com/lil-de7k/portfolio-client.git
+cd portfolio-client
 npm install
 npm start
 ```
 ---
 ### 📌 Screenshots
-#### ![Home](client/public/sc-home.png)
-#### ![Projects](client/public/sc-projects.png)
-#### ![Contact](client/public/sc-contact.png)
-#### ![Login](client/public/sc-login.png)
-#### ![Empty-Inbox](client/public/sc-empty-inbox.png)
-#### ![Inbox](client/public/sc-inbox.png)
+#### ![Home](public/sc-home.png)
+#### ![Projects](public/sc-projects.png)
+#### ![Contact](public/sc-contact.png)
+#### ![Login](public/sc-login.png)
+#### ![Empty-Inbox](public/sc-empty-inbox.png)
+#### ![Inbox](public/sc-inbox.png)
 ---
 ### Live Demo
-#### [MyPortfolio]()
+#### [MyPortfolio](https://muhammad-essam.vercel.app/)
 ---
 ### 📌 Contact
 - Email: muhvmmvdessvm@example.com

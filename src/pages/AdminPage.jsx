@@ -3,7 +3,7 @@ import { FaTrashAlt } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import empty from '/empty.png';
-import Navbar from '../components/Main/Navbar'
+import Navbar from '../components/Main/Navbar';
 
 const AdminPage = () => {
   const [messages, setMessages] = useState([]);
@@ -20,7 +20,7 @@ const AdminPage = () => {
     const fetchMessages = async () => {
       try {
         setLoading(true);
-        const response = await axios.get('http://localhost:3000/api/messages', {
+        const response = await axios.get('https://muhammads-server.vercel.app/api/messages', {
           headers: {
             Authorization: `Bearer ${token}`,
           }
@@ -39,7 +39,7 @@ const AdminPage = () => {
 
   const deleteMessage = async (id) => {
     try {
-      await axios.delete(`http://localhost:3000/api/messages/${id}`, {
+      await axios.delete(`https://muhammads-server.vercel.app/api/messages/${id}`, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem('token')}`,
         }

@@ -95,7 +95,7 @@ const Contact = () => {
     <div className="relative bg-gray-50 px-7 sm:px-6 md:px-12 lg:px-15 flex flex-col pt-5 pb-12 sm:pt-10 sm:pb-16 md:pt-16 md:pb-20" id='contact'>
       <h3
         ref={titleRef}
-        className='text-lg sm:text-xl md:text-lg font-bold border-blue-900 border-b-2 pb-1 mb-4 sm:mb-7 w-fit mx-auto text-center z-10 relative'
+        className='text-md sm:text-xl md:text-lg font-bold border-blue-900 border-b-2 pb-1 mb-4 sm:mb-7 w-fit mx-auto text-center z-10 relative'
       >
         Contact
       </h3>

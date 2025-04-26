@@ -152,7 +152,7 @@
             <div className="mt-6 sm:mt-8 md:mt-5 flex justify-center items-center gap-4 flex-wrap">
               <a href="/cv.pdf" download>
                 <button className="relative h-10 sm:h-9.5 px-5 rounded cursor-pointer flex items-center border border-blue-900 bg-blue-800 overflow-hidden group">
-                  <span className="transform transition-all duration-300 group-hover:opacity-0 text-white text-sm sm:text-[13px]">
+                  <span className="transform transition-all duration-300 group-hover:opacity-0 text-white text-[12px] sm:text-[13px]">
                     Download CV?
                   </span>
                   <span className="absolute transform transition-all duration-300 inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 bg-blue-900">
@@ -161,14 +161,14 @@
                       <path d="M17.5,22.693a3.189,3.189,0,0,1-2.262-.936L8.487,15.006a1.249,1.249,0,0,1,1.767-1.767l6.751,6.751a.7.7,0,0,0,.99,0l6.751-6.751a1.25,1.25,0,0,1,1.768,1.767l-6.752,6.751A3.191,3.191,0,0,1,17.5,22.693Z"></path>
                       <path d="M31.436,34.063H3.564A3.318,3.318,0,0,1,.25,30.749V22.011a1.25,1.25,0,0,1,2.5,0v8.738a.815.815,0,0,0,.814.814H31.436a.815.815,0,0,0,.814-.814V22.011a1.25,1.25,0,1,1,2.5,0v8.738A3.318,3.318,0,0,1,31.436,34.063Z"></path>
                     </svg>
-                    <span className="ml-2 text-white text-sm sm:text-[13px]">Download</span>
+                    <span className="ml-2 text-white text-[12px] sm:text-[13px]">Download</span>
                   </span>
                 </button>
               </a>
 
               <button
                 onClick={() => handleScrollToSection('contact')}
-                className="h-10 sm:h-9 px-5 cursor-pointer rounded border text-[13px] border-white text-white hover:bg-gray-300 hover:border-gray-300 hover:text-black font-medium transition"
+                className="h-10 sm:h-9 px-5 cursor-pointer rounded border text-[12px] sm:text-[13px] border-white text-white hover:bg-gray-300 hover:border-gray-300 hover:text-black font-medium transition"
               >
                 Hire Me
               </button>

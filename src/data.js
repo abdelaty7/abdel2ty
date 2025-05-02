@@ -19,4 +19,14 @@ export const projects = [
     category: 'Drafts',
     technologies: ['Tailwind','React','Material-UI']
   },
+  {
+    id: 3,
+    img: '/awlad-shawqy.jpeg',
+    title: 'Awlad Shawqy',
+    description: "An online platform to display and promote the products of an electrical equipment store.",
+    demo: 'https://awlad-shawqy.vercel.app/',
+    github: 'https://github.com/lil-de7k/awlad-shawqy',
+    category: 'Landing Page',
+    technologies: ['Tailwind','React']
+  },
 ]

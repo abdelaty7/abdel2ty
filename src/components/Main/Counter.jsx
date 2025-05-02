@@ -42,9 +42,9 @@ const Counter = () => {
 
   // Stats data to avoid repetition
   const statsData = [
-    { value: 0, label: "Clients Served" },
-    { value: 2, label: "Projects Delivered" },
-    { value: 3, label: "Projects Completed" },
+    { value: 1, label: "Clients Served" },
+    { value: 3, label: "Projects Delivered" },
+    { value: 4, label: "Projects Completed" },
     { value: 1, label: "Successful Integrations" }
   ];
 

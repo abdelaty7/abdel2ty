@@ -1,119 +1,257 @@
-import React, { useRef, useEffect } from 'react';
-import SkillsBar from './SkillsBar';
-import Marquee from "react-fast-marquee";
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-
-gsap.registerPlugin(ScrollTrigger);
+import React, { useState, useEffect } from 'react';
+import { motion, useAnimation } from 'framer-motion';
+import { GraduationCap, Languages, Download } from 'lucide-react';
 
 const About = () => {
-  const textRef = useRef(null);
-  const skillsRef = useRef(null);
-  const marqueeRef = useRef(null);
-  const sectionRef = useRef(null);
-  const headingRef = useRef(null);
+  const [isVisible, setIsVisible] = useState(false);
+  const controls = useAnimation();
 
   useEffect(() => {
-    const ctx = gsap.context(() => {
-      const elements = [
-        headingRef.current,
-        textRef.current,
-        skillsRef.current,
-        marqueeRef.current
-      ];
+    const timer = setTimeout(() => {
+      setIsVisible(true);
+      controls.start("visible");
+    }, 200);
 
-      elements.forEach((el, i) => {
-        gsap.from(el, {
-          y: 50,
-          opacity: 0,
-          duration: 0.8,
-          delay: i * 0.2,
-          ease: 'power3.out',
-          scrollTrigger: {
-            trigger: sectionRef.current,
-            start: 'top 85%',
-            toggleActions: 'play none none reverse'
-          }
-        });
-      });
-    }, sectionRef);
+    return () => clearTimeout(timer);
+  }, [controls]);
 
-    return () => ctx.revert();
-  }, []);
+  // 🧮 حساب العمر تلقائيًا
+  const calculateAge = () => {
+    const birthDate = new Date(2007, 0, 17); // 17 يناير 2007
+    const today = new Date();
+    let age = today.getFullYear() - birthDate.getFullYear();
+    const monthDiff = today.getMonth() - birthDate.getMonth();
+    const dayDiff = today.getDate() - birthDate.getDate();
 
-  // Technology icons with uniform structure
-  const techIcons = [
-    { src: "/html.svg", alt: "HTML5", title: "HTML5", className: "w-6 sm:w-8 md:w-7" },
-    { src: "/css.svg", alt: "CSS3", title: "CSS3", className: "w-6 sm:w-8 md:w-7" },
-    { src: "/js.svg", alt: "JavaScript", title: "JavaScript", className: "w-6 sm:w-8 md:w-6" },
-    { src: "/ts.svg", alt: "TypeScript", title: "TypeScript", className: "w-6 sm:w-8 md:w-6" },
-    { src: "/express.svg", alt: "Express", title: "Express.js", className: "w-6 sm:w-8 md:w-7" },
-    { src: "/react-js.svg", alt: "React.js", title: "React.js", className: "w-6 sm:w-8 md:w-7.5" },
-    { src: "/next.svg", alt: "Next.js", title: "Next.js", className: "w-6 sm:w-8 md:w-7" },
-    { src: "/tailwind.svg", alt: "Tailwind CSS", title: "Tailwind CSS", className: "w-6 sm:w-8 md:w-8.5" },
-    { src: "/material-ui.svg", alt: "Material UI", title: "Material UI", className: "w-6 sm:w-8 md:w-7" },
-    { src: "/node.svg", alt: "Node.js", title: "Node.js", className: "w-6 sm:w-8 md:w-7" },
-    { src: "/redux.svg", alt: "Redux", title: "Redux", className: "w-6 sm:w-8 md:w-7" },
-    { src: "/mongo.svg", alt: "MongoDB", title: "MongoDB", className: "w-6 sm:w-8 md:w-7.5" },
-    { src: "/git.svg", alt: "Git", title: "Git", className: "w-6 sm:w-8 md:w-7" },
-    { src: "/docker.svg", alt: "Docker", title: "Docker", className: "w-6 sm:w-8 md:w-7" },
-    { src: "/vercel.svg", alt: "Vercel", title: "Vercel", className: "w-6 sm:w-8 md:w-7" }
-  ];
+    if (monthDiff < 0 || (monthDiff === 0 && dayDiff < 0)) {
+      age--; // لسه مكمّلش السنة
+    }
+
+    return age;
+  };
+
+  const age = calculateAge();
+
+  // دالة تحميل الـ CV
+  const handleDownloadCV = () => {
+    // يمكنك تغيير المسار حسب مكان ملف الـ CV
+    const cvUrl = '/cv.pdf';
+    const link = document.createElement('a');
+    link.href = cvUrl;
+    link.download = 'Abdelaty_CV.pdf';
+    link.click();
+  };
+
+  // Animation variants
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.15,
+        delayChildren: 0.1
+      }
+    }
+  };
+
+  const itemVariants = {
+    hidden: { y: 50, opacity: 0 },
+    visible: {
+      y: 0,
+      opacity: 1,
+      transition: {
+        type: "spring",
+        damping: 15,
+        stiffness: 100,
+        duration: 0.6
+      }
+    }
+  };
+
+  const imageVariants = {
+    hidden: { scale: 0.8, opacity: 0, rotate: -20 },
+    visible: {
+      scale: 1,
+      opacity: 1,
+      rotate: -4,
+      transition: {
+        type: "spring",
+        damping: 15,
+        stiffness: 80,
+        duration: 0.8
+      }
+    }
+  };
+
+  const textVariants = {
+    hidden: { x: 50, opacity: 0 },
+    visible: {
+      x: 0,
+      opacity: 1,
+      transition: {
+        type: "spring",
+        damping: 20,
+        stiffness: 100,
+        duration: 0.8
+      }
+    }
+  };
+
+  const backgroundVariants = {
+    hidden: { x: 100, opacity: 0 },
+    visible: {
+      x: 0,
+      opacity: 1,
+      transition: {
+        type: "spring",
+        damping: 25,
+        stiffness: 60,
+        duration: 1
+      }
+    }
+  };
 
   return (
-    <div
-      ref={sectionRef}
-      className="relative bg-gray-50 px-7 sm:px-6 md:px-12 lg:px-15 flex flex-col pt-15 pb-12 sm:pt-10 sm:pb-16 md:pt-15 md:pb-20"
+    <motion.div 
+      initial="hidden"
+      animate={controls}
+      variants={containerVariants}
+      className='relative bg-neutral-900 overflow-x-hidden flex justify-center px-5 sm:px-4 md:px-6 lg:px-8' 
       id="about"
     >
-      {/* Heading */}
-      <h3
-        ref={headingRef}
-        className="text-md sm:text-xl md:text-lg font-bold border-blue-900 border-b-2 pb-1 mb-4 sm:mb-7 w-fit mx-auto text-center z-10 relative"
+      {/* خلفية كلمة ABOUT */}
+      <motion.div 
+        variants={backgroundVariants}
+        className='absolute -right-18 sm:-right-16 md:-right-20 top-20 sm:top-16 md:top-20 pointer-events-none'
       >
-        About
-      </h3>
+        <p className='text-neutral-800 font-black text-8xl sm:text-7xl md:text-8xl lg:text-9xl select-none'>ABOUT</p>
+      </motion.div>
 
-      {/* Content */}
-      <div className="flex flex-col lg:flex-row justify-between gap-8 lg:gap-12 pb-8 sm:pb-10 relative z-10">
-        {/* Text content */}
-        <div
-          ref={textRef}
-          className="lg:w-3/4 text-sm sm:text-base md:text-sm leading-relaxed text-gray-950 space-y-4"
-        >
-          <p>
-            I am a passionate Computer Science student with a deep interest in web development. Since the beginning of my studies, I have been dedicated to mastering the art of web development, and I have accumulated significant hands-on experience over time. This continuous learning process allows me to apply new skills and techniques to every project I take on, making me more confident and proficient with each passing day.
-          </p>
-          <p>
-            One of my key strengths is my time management and commitment. I believe that discipline and consistency are essential to success in any field. Through these qualities, I have been able to reach an advanced level in front-end development, where I focus on creating user-friendly, visually appealing, and functional interfaces.
-          </p>
-          <p>
-            Although I have strong skills in front-end development, I am constantly expanding my knowledge to include other aspects of web development, including back-end technologies, databases, and full-stack solutions. My goal is not just to complete projects but to ensure they are of the highest quality. I believe that the quality of the work is far more important than the quantity of projects undertaken.
-          </p>
-        </div>
+      <div className='pt-16 sm:pt-20 md:pt-24 flex flex-col items-center z-10 max-w-6xl w-full'>
+        {/* Header */}
+        <motion.div variants={itemVariants} className="text-center mb-6">
+          <motion.p 
+            variants={itemVariants}
+            className='text-white text-[30px] mb-0.5 font'
+          >
+            About Me
+          </motion.p>
+          <motion.div 
+            variants={itemVariants}
+            className='w-12 sm:w-15 h-1 bg-neutral-700 rounded-full mx-auto'
+          />
+        </motion.div>
 
-        {/* Skills bar */}
-        <div ref={skillsRef} className="lg:w-1/4">
-          <SkillsBar />
+        <div className='pb-16 sm:pb-20 md:pb-25 flex flex-col md:flex-row items-center md:items-start justify-between gap-8 sm:gap-10 md:gap-12 w-full'>
+          {/* الصورة */}
+          <motion.div 
+            variants={imageVariants}
+            className='flex-shrink-0'
+          >
+            <motion.div 
+              className='w-[183px] h-[240px] sm:w-[200px] sm:h-[258px] md:w-[215px] md:h-[277px] rounded-[15px] overflow-hidden border-[3px] border-neutral-700 shadow-md sm:rotate-[-3deg] hover:rotate-0 hover:scale-103 transition-all duration-300 ease-in-out'
+              whileHover={{ 
+                rotate: 0, 
+                scale: 1.03,
+                transition: { duration: 0.3 }
+              }}
+            >
+              <img
+                src='/hero.jpeg'
+                alt='Muhammad Essam'
+                className='object-cover w-full h-full'
+              />
+            </motion.div>
+          </motion.div>
+
+          {/* النص والمعلومات */}
+          <motion.div 
+            variants={textVariants}
+            className='flex-1 w-full'
+          >
+            <motion.p 
+              variants={itemVariants}
+              className='text-[16.5px] sm:text-[16px] md:text-[17.3px] leading-6 sm:leading-7 text-neutral-400 text-center md:text-left px-2 sm:px-0'
+            >
+              I'm Muhammad Essam, <span className='text-neutral-100/95'>{age} years</span>, based in Egypt. I'm currently focused on <span className='text-neutral-100/95'>studying Artificial Intelligence and Machine Learning</span>, which are my main areas of interest. I also have a solid background in Front-End Development and am exploring Flutter and some Back-End basics. 
+              <span className='text-neutral-100/95'> All my learning is self-taught</span>, driven by a genuine passion for technology and an endless curiosity to understand how systems work from the inside out. I constantly challenge myself with complex problems, not because I have to — but because <span className='text-neutral-100/95'>problem-solving is how I grow</span>. I treat every bug, every error, every unexpected behavior as a puzzle to master, not just fix.
+              I believe that true learning doesn't happen in the classroom alone — <span className='text-neutral-100/95'>it happens through practice, failure, and persistence</span>. Although I'm currently studying Computer Science at university, I've always been ahead of the curve. <span className='text-neutral-100/95'>I don't wait for knowledge, I seek it</span> — and I apply it immediately.
+              <span className='text-neutral-100/95'> Curiosity. Consistency. Creativity.</span> These are the pillars I build on.
+            </motion.p>
+            
+            <motion.div 
+              variants={itemVariants}
+              className='flex flex-col sm:flex-row mt-7 sm:mt-5 justify-between items-center gap-4 sm:gap-0'
+            >
+              <div className='flex flex-col sm:flex-row gap-3 sm:gap-4 w-full sm:w-auto'>
+                <motion.div
+                  initial={{ scale: 0.8, opacity: 0 }}
+                  animate={{ scale: 1, opacity: 1 }}
+                  transition={{ delay: 0.8, duration: 0.5 }}
+                >
+                  <InfoItem
+                    icon={<GraduationCap size={21.5} className='text-neutral-300/80' />}
+                    text='Bachelor of Computer Science'
+                  />
+                </motion.div>
+                <motion.div
+                  initial={{ scale: 0.8, opacity: 0 }}
+                  animate={{ scale: 1, opacity: 1 }}
+                  transition={{ delay: 0.9, duration: 0.5 }}
+                >
+                  <InfoItem
+                    icon={<Languages size={19.5} className='text-neutral-300/80' />}
+                    text='Arabic, English, German'
+                  />
+                </motion.div>
+              </div>
+              
+              <motion.div
+                initial={{ scale: 0.8, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                transition={{ delay: 1, duration: 0.5 }}
+                className='w-full sm:w-auto flex justify-center'
+              >
+                <CVDownloadButton onClick={handleDownloadCV} />
+              </motion.div>
+            </motion.div>
+          </motion.div>
         </div>
       </div>
-
-      {/* Marquee */}
-      <div ref={marqueeRef}>
-        <Marquee direction="right" speed={25} pauseOnHover={true} className="z-10">
-          {techIcons.map((icon, index) => (
-            <img 
-              key={index}
-              className={`${icon.className} h-auto mx-3 sm:mx-5 md:mx-7`} 
-              src={icon.src} 
-              alt={icon.alt} 
-              title={icon.title} 
-            />
-          ))}
-        </Marquee>
-      </div>
-    </div>
+    </motion.div>
   );
 };
+
+const InfoItem = ({ icon, text, small = false }) => (
+  <motion.div 
+    className='flex items-center gap-2 bg-neutral-800 pr-3 sm:pr-4 rounded-full w-fit transition-all duration-300'
+  >
+    <div className='p-2.5 border-2 rounded-full border-neutral-500/60'>
+      {icon}
+    </div>
+    <p className={`text-neutral-300/70 ${small ? 'text-[12px] sm:text-[13.7px]' : 'text-[15px] sm:text-[14.4px]'} mx-0.5`}>
+      {text}
+    </p>
+  </motion.div>
+);
+
+const CVDownloadButton = ({ onClick }) => (
+  <motion.button
+    onClick={onClick}
+    className='flex items-center mt-5 sm:mt-0 px-6 sm:px-5 gap-1 bg-neutral-300/90 sm:bg-neutral-400/90 hover:bg-neutral-700 pr-6 sm:pr-4 py-1.5 sm:py-1 rounded-full w-fit transition-all duration-300 ease-in-out cursor-pointer group'
+    whileHover={{ scale: 1.05 }}
+    whileTap={{ scale: 0.95 }}
+    initial={{ y: 20, opacity: 0 }}
+    animate={{ y: 0, opacity: 1 }}
+    transition={{ delay: 1.1, duration: 0.5 }}
+  >
+    <div className='py-2 rounded-full border-neutral-800 group-hover:border-neutral-400/80 transition-colors duration-300'>
+      <Download size={17.5} className='text-neutral-950/90 group-hover:text-neutral-300 transition-colors duration-300' />
+    </div>
+    <p className='text-neutral-950 group-hover:text-neutral-200/80 text-[14.8px] sm:text-[15px] mx-0.5 transition-colors duration-300'>
+      Download CV
+    </p>
+  </motion.button>
+);
 
 export default About;

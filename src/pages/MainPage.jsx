@@ -1,10 +1,12 @@
 import React from 'react'
 import Navbar from '../components/Main/Navbar'
 import Welcome from '../components/Main/Welcome'
-import Counter from '../components/Main/Counter'
+import Mix from '../components/Main/Mix'
 import About from '../components/Main/About'
-import Experience from '../components/Main/Experience'
+import Skills from '../components/Main/Skills'
 import Portfolio from '../components/Main/Portfolio'
+import Experience from '../components/Main/Experience'
+import Certification from '../components/Main/Certification'
 import Contact from '../components/Main/Contact'
 import Footer from '../components/Main/Footer'
 
@@ -13,10 +15,12 @@ const MainPage = () => {
     <>
       <Navbar />
       <Welcome />
-      <Counter />
+      <Mix />
       <About />
-      <Experience />
+      <Skills />
       <Portfolio />
+      <Experience />
+      <Certification />
       <Contact />
       <Footer />
     </>

@@ -1,23 +1,35 @@
-@import url('https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@100..900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Baumans&family=Manufacturing+Consent&display=swap');
 @import "tailwindcss";
 
 *{
-  font-family: "Lexend Deca", sans-serif;
+  font-family: "Baumans", system-ui;
 }
 
 .font{
-  font-family: "Bebas Neue", sans-serif;
+  font-family: "Manufacturing Consent", system-ui;
 }
 
-/* Scrollbar */
-::-webkit-scrollbar {
-  width: 5px; 
-  height: 5px;
+html {
+  scroll-behavior: smooth;
 }
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 5px;
+  border: #1c1c1c 1px solid;
+}
+
 ::-webkit-scrollbar-track {
-  background: #bebebe; 
+  background: #1c1c1c; /* رمادي غامق */
+  padding: 2px;
 }
 ::-webkit-scrollbar-thumb {
-  background:  #0f0dad; 
+  background-color: #505050; /* لون ثابت للسكروول */
+  border-radius: 8px;
+  margin: 2px; /* زي padding بسيط داخلي */
 }
+::-webkit-scrollbar-thumb:hover {
+  background-color: #616161;
+}
+

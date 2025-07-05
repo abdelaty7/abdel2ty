@@ -85,8 +85,8 @@ const ScrollToTop = () => {
       aria-label="Scroll to top"
       className={`fixed z-50 flex items-center justify-center bottom-3 sm:bottom-5 md:bottom-6 lg:bottom-4
                 right-3 sm:right-5 md:right-6 lg:right-4
-                h-9 w-9 sm:h-10 sm:w-10 md:h-10 md:w-10
-                bg-blue-800 hover:bg-blue-700 
+                h-11 w-11 sm:h-10 sm:w-10 md:h-10 md:w-10
+                bg-neutral-700/85 hover:bg-neutral-700 
                 p-2 sm:p-2 md:p-2
                 rounded-full cursor-pointer 
                 shadow-lg hover:shadow-xl
@@ -94,7 +94,7 @@ const ScrollToTop = () => {
                 opacity-0`}
       onClick={scrollToTop}
     >
-      <FaArrowUp className="text-white text-xs sm:text-sm md:text-xs" />
+      <FaArrowUp className="text-neutral-200/90 text-[14px] sm:text-sm md:text-[14px]" />
     </button>
   );
 };

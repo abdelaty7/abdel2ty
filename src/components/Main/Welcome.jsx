@@ -263,7 +263,7 @@ const Welcome = () => {
       {/* Mobile Menu Button */}
       <button
         onClick={toggleMobileMenu}
-        className="md:hidden fixed top-6 left-6 z-50 px-4 py-3 bg-neutral-900/85 text-neutral-200 rounded-lg shadow-lg"
+        className="md:hidden fixed top-6 left-6 z-50 px-4 py-3 bg-neutral-800/75 text-neutral-200 rounded-lg shadow-lg"
       >
         <FontAwesomeIcon icon={isMobileMenuOpen ? faTimes : faBars} className="text-lg" />
       </button>
@@ -271,7 +271,7 @@ const Welcome = () => {
       {/* Mobile Audio Button */}
       <button
         onClick={toggleMobileAudio}
-        className="md:hidden fixed top-6 right-6 z-50 px-4 py-3 bg-neutral-900/85 text-neutral-300 rounded-lg shadow-lg"
+        className="md:hidden fixed top-6 right-6 z-50 px-4 py-3 bg-neutral-800/75 text-neutral-300 rounded-lg shadow-lg"
       >
         <FontAwesomeIcon icon={faMusic} className="text-lg" />
       </button>
@@ -279,7 +279,7 @@ const Welcome = () => {
       {/* Mobile Navigation Menu */}
       <div className={`md:hidden fixed inset-0 z-80 transition-opacity duration-300 ${isMobileMenuOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}`}>
         <div className="absolute inset-0 bg-black/70" onClick={toggleMobileMenu}></div>
-        <div className={`absolute left-0 top-0 h-full w-80 bg-neutral-900/95 backdrop-blur-sm transform transition-transform duration-300 ${isMobileMenuOpen ? 'translate-x-0' : '-translate-x-full'}`}>
+        <div className={`absolute left-0 top-0 h-full w-70 bg-neutral-800/95 backdrop-blur-sm transform transition-transform duration-300 ${isMobileMenuOpen ? 'translate-x-0' : '-translate-x-full'}`}>
           <div className="p-8 pt-20">
             <ul className="space-y-4 text-neutral-300">
               <li>
@@ -342,7 +342,7 @@ const Welcome = () => {
       </div>
 
       {/* Desktop Music & Volume Controls */}
-      <div className="hidden md:block absolute top-6 right-6 z-30 w-50 bg-neutral-900/90 rounded-2xl p-4 shadow-xl space-y-4">
+      <div className="hidden md:block absolute top-6 right-6 z-30 w-50 bg-neutral-700/50 rounded-2xl p-4 shadow-xl space-y-4">
         {/* Play / Pause Button */}
         <button
           onClick={toggleMusic}
@@ -389,11 +389,11 @@ const Welcome = () => {
 
       {/* Mobile Audio Controls */}
       <div className={`md:hidden fixed top-20 right-6 z-40 transition-all duration-300 ${showMobileAudio ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}`}>
-        <div className="bg-neutral-900/85 backdrop-blur-sm rounded-xl p-4 shadow-xl space-y-4 min-w-[220px]">
+        <div className="bg-neutral-700/85 backdrop-blur-sm rounded-xl p-4 shadow-xl space-y-4 min-w-[220px]">
           {/* Play / Pause Button */}
           <button
             onClick={toggleMusic}
-            className="w-full text-[15px] px-4 py-3 rounded-lg transition-all duration-300 flex items-center justify-center bg-neutral-800/90 text-neutral-300 hover:bg-neutral-700/50 hover:text-neutral-100"
+            className="w-full text-[15px] px-4 py-3 rounded-lg transition-all duration-300 flex items-center justify-center bg-neutral-800/50 text-neutral-300 hover:bg-neutral-700/50 hover:text-neutral-100"
           >
             <FontAwesomeIcon icon={isPlaying ? faPause : faPlay} className="mr-3 text-[12.5px]" />
             {isPlaying ? 'Pause Music' : 'Play Music'}
@@ -404,7 +404,7 @@ const Welcome = () => {
             <div className="flex items-center gap-2">
               <button
                 onClick={decreaseVolume}
-                className="p-2 bg-neutral-800/90 text-neutral-300 rounded-lg hover:bg-neutral-700/50 transition-colors"
+                className="p-2 bg-neutral-800/50 text-neutral-300 rounded-lg hover:bg-neutral-700/50 transition-colors"
               >
                 <FontAwesomeIcon icon={faVolumeDown} className="text-[14px]" />
               </button>
@@ -427,7 +427,7 @@ const Welcome = () => {
               </div>
               <button
                 onClick={increaseVolume}
-                className="p-2 bg-neutral-800/90 text-neutral-300 rounded-lg hover:bg-neutral-700/50 transition-colors"
+                className="p-2 bg-neutral-800/50 text-neutral-300 rounded-lg hover:bg-neutral-700/50 transition-colors"
               >
                 <FontAwesomeIcon icon={faVolumeUp} className="text-[14px]" />
               </button>
@@ -439,7 +439,7 @@ const Welcome = () => {
               className={`w-full text-[15px] px-4 py-3 rounded-lg transition-all duration-300 flex items-center justify-center ${
                 isMuted
                   ? 'bg-red-500/60 text-neutral-200 hover:bg-red-600/90'
-                  : 'bg-neutral-800/90 text-neutral-300 hover:bg-neutral-700/50 hover:text-neutral-100'
+                  : 'bg-neutral-800/50 text-neutral-300 hover:bg-neutral-700/50 hover:text-neutral-100'
               }`}
             >
               <FontAwesomeIcon icon={isMuted ? faVolumeMute : faVolumeUp} className="mr-3 text-[12.5px]" />
@@ -486,23 +486,32 @@ const Welcome = () => {
       </div>
 
       {/* Social media icons */}
-      <div className="absolute bottom-20 sm:bottom-10 left-1/2 transform -translate-x-1/2 sm:left-auto sm:-right-83 w-1/2 h-full flex items-end sm:justify-end justify-center z-10">
-        <div className="flex gap-4 sm:gap-3.5 mx-6 text-neutral-300 sm:text-neutral-300/80">
-          <a href="https://www.linkedin.com/in/abdel2ty/" target="_blank" rel="noopener noreferrer">
-            <FontAwesomeIcon icon={faLinkedinIn} className="hover:text-neutral-300 hover:bg-neutral-700/80 text-[20.5px] sm:text-[20px] transition-all duration-300 ease-in-out hover:-translate-y-2.5 p-3.5 sm:p-3 bg-neutral-800/85 sm:bg-neutral-800/75 rounded-full" />
-          </a>
-          <a href="https://github.com/abdelaty7" target="_blank" rel="noopener noreferrer">
-            <FontAwesomeIcon icon={faGithub} className="hover:text-neutral-300 hover:bg-neutral-700/80 text-[20.5px] sm:text-[21px] transition-all duration-300 ease-in-out hover:-translate-y-2.5 p-3.5 sm:p-3 bg-neutral-800/85 sm:bg-neutral-800/75 rounded-full" />
-          </a>
-          <a href="https://instagram.com/lil__de7k" target="_blank" rel="noopener noreferrer">
-            <FontAwesomeIcon icon={faInstagram} className="hover:text-neutral-300 hover:bg-neutral-700/80 text-[20.5px] sm:text-[21px] transition-all duration-300 ease-in-out hover:-translate-y-2.5 p-3.5 sm:p-3 bg-neutral-800/85 sm:bg-neutral-800/75 rounded-full" />
-          </a>
-          <a href="https://wa.me/201012857997" target="_blank" rel="noopener noreferrer">
-            <FontAwesomeIcon icon={faWhatsapp} className="hover:text-neutral-300 hover:bg-neutral-700/80 text-[20.5px] sm:text-[22px] transition-all duration-300 ease-in-out hover:-translate-y-2.5 p-3.5 sm:p-3 bg-neutral-800/85 sm:bg-neutral-800/75 rounded-full" />
-          </a>
+      <div className="absolute bottom-0 sm:bottom-10 left-1/2 transform -translate-x-1/2 sm:left-auto sm:-right-83 w-1/2 h-full flex sm:items-end items-center sm:justify-end justify-center z-10">
+        <div className="flex flex-col items-center sm:flex-row gap-4 sm:gap-3.5 mx-6 text-neutral-300 sm:text-neutral-300/80">
+          
+          {/* النص اللي فوق اللينكات في الشاشات الصغيرة فقط */}
+          <div className="text-center mb-3 sm:hidden w-79">
+            <h1 className="text-[77px] text-neutral-200 font leading-15">Welcome to the zone</h1>
+            <p className="text-[17.7px] text-neutral-200 mt-4">Self-Taught AI/ML Enthusiast | MERN Stack Developer</p>
+          </div>
+
+          {/* روابط السوشيال ميديا */}
+          <div className="flex gap-4 sm:gap-3.5">
+            <a href="https://www.linkedin.com/in/abdel2ty/" target="_blank" rel="noopener noreferrer">
+              <FontAwesomeIcon icon={faLinkedinIn} className="hover:text-neutral-300 hover:bg-neutral-700/80 text-[19.5px] sm:text-[20px] transition-all duration-300 ease-in-out hover:-translate-y-2.5 p-3.5 sm:p-3 bg-neutral-700/90 sm:bg-neutral-800/75 rounded-full" />
+            </a>
+            <a href="https://github.com/abdelaty7" target="_blank" rel="noopener noreferrer">
+              <FontAwesomeIcon icon={faGithub} className="hover:text-neutral-300 hover:bg-neutral-700/80 text-[19.5px] sm:text-[21px] transition-all duration-300 ease-in-out hover:-translate-y-2.5 p-3.5 sm:p-3 bg-neutral-700/90 sm:bg-neutral-800/75 rounded-full" />
+            </a>
+            <a href="https://instagram.com/lil__de7k" target="_blank" rel="noopener noreferrer">
+              <FontAwesomeIcon icon={faInstagram} className="hover:text-neutral-300 hover:bg-neutral-700/80 text-[19.5px] sm:text-[21px] transition-all duration-300 ease-in-out hover:-translate-y-2.5 p-3.5 sm:p-3 bg-neutral-700/90 sm:bg-neutral-800/75 rounded-full" />
+            </a>
+            <a href="https://wa.me/201012857997" target="_blank" rel="noopener noreferrer">
+              <FontAwesomeIcon icon={faWhatsapp} className="hover:text-neutral-300 hover:bg-neutral-700/80 text-[19.5px] sm:text-[22px] transition-all duration-300 ease-in-out hover:-translate-y-2.5 p-3.5 sm:p-3 bg-neutral-700/90 sm:bg-neutral-800/75 rounded-full" />
+            </a>
+          </div>
         </div>
       </div>
-
       {/* Dynamic CSS animations for each piece */}
       <style jsx>{`
         ${shrapnelPieces.map(piece => `

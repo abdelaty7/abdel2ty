@@ -171,7 +171,7 @@ const About = () => {
           >
             <motion.p 
               variants={itemVariants}
-              className='text-[16.5px] sm:text-[16px] md:text-[17.3px] leading-6 sm:leading-7 text-neutral-400 text-center md:text-left px-2 sm:px-0'
+              className='text-[16.8px] sm:text-[16px] md:text-[17.3px] leading-6 sm:leading-7 text-neutral-400 text-center md:text-left px-2 sm:px-0'
             >
               I'm Muhammad Essam, <span className='text-neutral-100/95'>{age} years</span>, based in Egypt. I'm currently focused on <span className='text-neutral-100/95'>studying Artificial Intelligence and Machine Learning</span>, which are my main areas of interest. I also have a solid background in Front-End Development and am exploring Flutter and some Back-End basics. 
               <span className='text-neutral-100/95'> All my learning is self-taught</span>, driven by a genuine passion for technology and an endless curiosity to understand how systems work from the inside out. I constantly challenge myself with complex problems, not because I have to — but because <span className='text-neutral-100/95'>problem-solving is how I grow</span>. I treat every bug, every error, every unexpected behavior as a puzzle to master, not just fix.
@@ -188,6 +188,7 @@ const About = () => {
                   initial={{ scale: 0.8, opacity: 0 }}
                   animate={{ scale: 1, opacity: 1 }}
                   transition={{ delay: 0.8, duration: 0.5 }}
+                  className='hidden sm:flex'
                 >
                   <InfoItem
                     icon={<GraduationCap size={21.5} className='text-neutral-300/80' />}
@@ -198,6 +199,7 @@ const About = () => {
                   initial={{ scale: 0.8, opacity: 0 }}
                   animate={{ scale: 1, opacity: 1 }}
                   transition={{ delay: 0.9, duration: 0.5 }}
+                  className='hidden sm:flex'
                 >
                   <InfoItem
                     icon={<Languages size={19.5} className='text-neutral-300/80' />}
@@ -238,7 +240,7 @@ const InfoItem = ({ icon, text, small = false }) => (
 const CVDownloadButton = ({ onClick }) => (
   <motion.button
     onClick={onClick}
-    className='flex items-center mt-5 sm:mt-0 px-6 sm:px-5 gap-1 bg-neutral-300/90 sm:bg-neutral-400/90 hover:bg-neutral-700 pr-6 sm:pr-4 py-1.5 sm:py-1 rounded-full w-fit transition-all duration-300 ease-in-out cursor-pointer group'
+    className='flex items-center mt-2 sm:mt-0 px-6 sm:px-5 gap-1 bg-neutral-300/90 sm:bg-neutral-400/90 hover:bg-neutral-700 pr-6 sm:pr-4 py-1.5 sm:py-1 rounded-full w-fit transition-all duration-300 ease-in-out cursor-pointer group'
     whileHover={{ scale: 1.05 }}
     whileTap={{ scale: 0.95 }}
     initial={{ y: 20, opacity: 0 }}

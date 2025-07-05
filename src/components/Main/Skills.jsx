@@ -225,7 +225,7 @@ const Skills = () => {
       initial="hidden"
       animate={controls}
       variants={containerVariants}
-      className="relative bg-neutral-950 px-5 sm:px-4 md:px-6 lg:px-12 xl:px-30 flex flex-col py-10 sm:py-16 md:py-20 overflow-hidden" 
+      className="relative bg-neutral-950 px-5 sm:px-4 md:px-6 lg:px-12 xl:px-30 flex flex-col py-15 sm:py-16 md:py-20 overflow-hidden" 
       id="skills"
     >
       {/* SVG Gradients for metallic effect */}

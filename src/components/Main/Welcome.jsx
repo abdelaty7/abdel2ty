@@ -255,7 +255,7 @@ const Welcome = () => {
 
       {/* Background image */}
       <img
-        src="/welcome.jpg"
+        src="/wel.jpg"
         alt="welcome image"
         className="w-full h-full object-cover"
       />
@@ -486,7 +486,7 @@ const Welcome = () => {
       </div>
 
       {/* Social media icons */}
-      <div className="absolute bottom-11 sm:bottom-10 left-1/2 transform -translate-x-1/2 sm:left-auto sm:-right-83 w-1/2 h-full flex items-end sm:justify-end justify-center z-10">
+      <div className="absolute bottom-15 sm:bottom-10 left-1/2 transform -translate-x-1/2 sm:left-auto sm:-right-83 w-1/2 h-full flex items-end sm:justify-end justify-center z-10">
         <div className="flex gap-4 sm:gap-3.5 mx-6 text-neutral-300 sm:text-neutral-300/80">
           <a href="https://www.linkedin.com/in/abdel2ty/" target="_blank" rel="noopener noreferrer">
             <FontAwesomeIcon icon={faLinkedinIn} className="hover:text-neutral-300 hover:bg-neutral-700/80 text-[20.5px] sm:text-[20px] transition-all duration-300 ease-in-out hover:-translate-y-2.5 p-3.5 sm:p-3 bg-neutral-800/85 sm:bg-neutral-800/75 rounded-full" />
